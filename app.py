@@ -174,6 +174,113 @@ section[data-testid="stSidebar"] * {
 </style>
 """, unsafe_allow_html=True)
 
+# ─── Session State Init ────────────────────────────────────────────────────────
+
+if "tos_accepted" not in st.session_state:
+    st.session_state.tos_accepted = False
+
+
+# ─── Terms of Service Gate ─────────────────────────────────────────────────────
+
+def show_tos_gate():
+    st.markdown("""
+    <div style="max-width:720px; margin:60px auto 0 auto;">
+        <div style="text-align:center; margin-bottom:32px;">
+            <div style="font-size:2.8rem;">🌙</div>
+            <h1 style="font-family:'Lora',serif; color:#c8a84b; font-size:2rem; margin:12px 0 6px 0;">
+                Halal Stock Screener
+            </h1>
+            <p style="color:#6a8a6a; font-size:0.95rem;">
+                Before you continue, please read and accept the Terms of Service.
+            </p>
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
+
+    with st.container():
+        st.markdown("""
+        <div style="background:#0e1e12; border:1px solid #2a4a2e; border-radius:14px;
+                    padding:28px 32px; max-width:720px; margin:0 auto;">
+            <h3 style="color:#c8d8c8; font-family:'Lora',serif; margin-top:0;">
+                Terms of Service & Disclaimer
+            </h3>
+        </div>
+        """, unsafe_allow_html=True)
+
+        tos_box = st.container()
+        with tos_box:
+            st.markdown("""
+<div style="background:#060f07; border:1px solid #1a2e1e; border-radius:10px;
+            padding:20px 24px; height:340px; overflow-y:scroll;
+            font-size:0.83rem; color:#8aaa8a; line-height:1.7;
+            max-width:720px; margin:0 auto;">
+
+<strong style="color:#c8d8c8; font-size:0.95rem;">1. Educational Use Only</strong><br>
+This App is provided solely for general informational and educational purposes. It does not constitute
+financial advice, investment advice, trading advice, or any other form of professional advice.
+Nothing in the App should be construed as a solicitation or offer to buy or sell any security.
+<br><br>
+
+<strong style="color:#c8d8c8; font-size:0.95rem;">2. Not a Registered Investment Advisor</strong><br>
+This App is not operated by a registered investment advisor, broker-dealer, or licensed financial
+professional. No fiduciary relationship is created between you and the App or its operators.
+<br><br>
+
+<strong style="color:#c8d8c8; font-size:0.95rem;">3. Not a Religious or Scholarly Authority</strong><br>
+This App is not affiliated with or endorsed by AAOIFI, S&P Global, FTSE Russell, Zoya, Musaffa,
+Islamicly, Wahed Invest, SP Funds, or any Islamic scholarly body or Shariah supervisory board.
+Screening results reflect a rules-based algorithmic interpretation of publicly available methodology
+documents only. Always consult a qualified Islamic finance scholar before making investment decisions.
+<br><br>
+
+<strong style="color:#c8d8c8; font-size:0.95rem;">4. No Guarantee of Accuracy or Compliance Status</strong><br>
+Financial data is sourced from Yahoo Finance and may be delayed, incomplete, or subject to error.
+A "Potentially Halal" result does <em>not</em> mean a company is certified Shariah-compliant.
+Screening results are a starting point for further research — not a final determination.
+<br><br>
+
+<strong style="color:#c8d8c8; font-size:0.95rem;">5. Limitation of Liability</strong><br>
+To the maximum extent permitted by applicable law, the App and its operators shall not be liable
+for any direct, indirect, incidental, or consequential damages arising from your use of or reliance
+on any screening result, data, or content — including any investment loss resulting from decisions
+made based on information obtained through this App.
+<br><br>
+
+<strong style="color:#c8d8c8; font-size:0.95rem;">6. Your Responsibilities</strong><br>
+By using this App you acknowledge that: (a) you will not rely solely on its output when making
+investment decisions; (b) you will conduct your own independent research and due diligence;
+(c) you will consult a qualified financial advisor and/or Islamic finance scholar before investing;
+and (d) you are solely responsible for your investment decisions and their outcomes.
+<br><br>
+
+<strong style="color:#c8d8c8; font-size:0.95rem;">7. Data Sources & Third Parties</strong><br>
+This App relies on Yahoo Finance for financial data. We are not responsible for the accuracy or
+availability of third-party data. References to third-party platforms are for context only and do
+not imply affiliation or endorsement.
+<br><br>
+
+<em style="color:#5a7a5a;">Full Terms of Service are available in TERMS_OF_SERVICE.md in the project repository.</em>
+
+</div>
+            """, unsafe_allow_html=True)
+
+        st.markdown("<div style='max-width:720px; margin:0 auto;'>", unsafe_allow_html=True)
+        agreed = st.checkbox(
+            "I have read and agree to the Terms of Service. I understand this App is for educational purposes only and does not constitute financial or religious advice.",
+            key="tos_checkbox"
+        )
+
+        col_a, col_b, _ = st.columns([2, 2, 3])
+        with col_a:
+            if st.button("✓ Continue to App", type="primary", disabled=not agreed, use_container_width=True):
+                st.session_state.tos_accepted = True
+                st.rerun()
+        with col_b:
+            if st.button("✕ Decline", use_container_width=True):
+                st.warning("You must accept the Terms of Service to use this application.")
+        st.markdown("</div>", unsafe_allow_html=True)
+
+
 # ─── Helper Functions ──────────────────────────────────────────────────────────
 
 def verdict_badge(verdict: str) -> str:
@@ -321,14 +428,18 @@ def render_result(result: dict):
         # Raw data note
         st.markdown(f"""
         <div class="disclaimer">
-            💡 <strong>Data sources:</strong> Financial ratios from Yahoo Finance (yfinance). Business activity classification by Claude AI.
-            Impure revenue % is an estimate — manual review of annual reports recommended for accuracy.
+            💡 <strong>Data sources:</strong> Financial ratios from Yahoo Finance. Business activity classification via sector/industry keyword matching.
+            Impure revenue % is based on reported interest income — verify non-permissible segment revenue in annual reports.
             Islamicly's 36-month average market cap is approximated with current market cap in this concept version.
         </div>
         """, unsafe_allow_html=True)
 
 
 # ─── Sidebar ───────────────────────────────────────────────────────────────────
+
+if not st.session_state.tos_accepted:
+    show_tos_gate()
+    st.stop()
 
 with st.sidebar:
     st.markdown("## 🌙 Halal Screener")

@@ -227,10 +227,10 @@ professional. No fiduciary relationship is created between you and the App or it
 <br><br>
 
 <strong style="color:#c8d8c8; font-size:0.95rem;">3. Not a Religious or Scholarly Authority</strong><br>
-This App is not affiliated with or endorsed by AAOIFI, S&P Global, FTSE Russell, Zoya, Musaffa,
-Islamicly, Wahed Invest, SP Funds, or any Islamic scholarly body or Shariah supervisory board.
-Screening results reflect a rules-based algorithmic interpretation of publicly available methodology
-documents only. Always consult a qualified Islamic finance scholar before making investment decisions.
+This App is not affiliated with or endorsed by AAOIFI, S&P Global, FTSE Russell, or any
+Islamic scholarly body or Shariah supervisory board. Screening criteria are derived from publicly
+available AAOIFI, FTSE Yasaar, and S&P Shariah methodology documents. Always consult a qualified
+Islamic finance scholar before making investment decisions.
 <br><br>
 
 <strong style="color:#c8d8c8; font-size:0.95rem;">4. No Guarantee of Accuracy or Compliance Status</strong><br>
@@ -430,7 +430,7 @@ def render_result(result: dict):
         <div class="disclaimer">
             💡 <strong>Data sources:</strong> Financial ratios from Yahoo Finance. Business activity classification via sector/industry keyword matching.
             Impure revenue % is based on reported interest income — verify non-permissible segment revenue in annual reports.
-            Islamicly's 36-month average market cap is approximated with current market cap in this concept version.
+            The S&P Shariah market-cap variant's 36-month average is approximated with current market cap in this concept version.
         </div>
         """, unsafe_allow_html=True)
 
@@ -449,14 +449,16 @@ with st.sidebar:
     st.markdown("#### 📋 Frameworks")
     st.markdown("""
     <small style="color:#6a8a6a; line-height:1.6;">
-    This screener applies <strong style="color:#9ab09a">6 standards</strong> simultaneously:
+    Applies <strong style="color:#9ab09a">4 screening criteria sets</strong> derived from the three major Islamic finance standards:
     <br><br>
-    🟢 <strong>AAOIFI</strong> — 30/30/5 (market cap)<br>
-    🟢 <strong>Zoya</strong> — AAOIFI default<br>
-    🟢 <strong>Musaffa</strong> — AAOIFI default<br>
-    🟡 <strong>Islamicly</strong> — 33/33/49/5 (36mo avg)<br>
-    🟡 <strong>Wahed / FTSE</strong> — 33.3/33.3/50 (assets)<br>
-    🟡 <strong>SP Funds</strong> — same as FTSE (legal)
+    🟢 <strong>AAOIFI Standard</strong><br>
+    <span style="color:#4a6a4a;">30% debt · 30% cash · 5% impure revenue (vs market cap) — strictest financial thresholds</span><br><br>
+    🟡 <strong>FTSE Yasaar</strong><br>
+    <span style="color:#4a6a4a;">33.3% debt · 33.3% cash · rec+cash &lt;50% (vs total assets) — explicit sector exclusions</span><br><br>
+    🟡 <strong>S&amp;P Shariah</strong><br>
+    <span style="color:#4a6a4a;">Same as FTSE Yasaar · additional sub-industry exclusions incl. aerospace &amp; defense</span><br><br>
+    🟡 <strong>S&amp;P Shariah (Market-Cap Variant)</strong><br>
+    <span style="color:#4a6a4a;">33% debt · 33% cash · 49% receivables (vs market cap) — receivables check included</span>
     </small>
     """, unsafe_allow_html=True)
 
@@ -489,7 +491,7 @@ with st.sidebar:
 st.markdown("""
 <div class="app-header">
     <h1>🌙 Halal Stock Screener</h1>
-    <p>Screen stocks against 6 major Islamic finance frameworks — AAOIFI · Zoya · Musaffa · Islamicly · Wahed / FTSE · SP Funds</p>
+    <p>Screen stocks against three major Islamic finance screening standards — AAOIFI · FTSE Yasaar · S&amp;P Shariah</p>
 </div>
 """, unsafe_allow_html=True)
 
@@ -570,8 +572,8 @@ if screen_btn:
         st.markdown("""
         <div class="disclaimer">
             <strong>Important:</strong> This concept screener uses Yahoo Finance data (which may be delayed, incomplete, or missing for some tickers) 
-            and AI-based business activity classification. Results should be cross-referenced with official screening platforms (Zoya, Musaffa, Islamicly) 
-            and verified with a qualified Islamic finance scholar before acting on them. 
+            and AI-based business activity classification. Results should be independently verified and cross-referenced with official AAOIFI, FTSE Yasaar,
+            and S&P Shariah documentation. Always consult a qualified Islamic finance scholar before acting on them.
             Purification calculations are not yet included in this concept version.
         </div>
         """, unsafe_allow_html=True)

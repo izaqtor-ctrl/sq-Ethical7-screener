@@ -5,7 +5,6 @@ Screens individual stocks or a list of tickers against 6 major Islamic finance f
 
 import streamlit as st
 from halal_screener import screen_ticker
-import os
 
 # ─── Page Config ───────────────────────────────────────────────────────────────
 
@@ -335,13 +334,6 @@ with st.sidebar:
     st.markdown("## 🌙 Halal Screener")
     st.markdown("---")
 
-    # Check if a key is already available before asking user to type
-    _has_env_key = bool(os.environ.get("ANTHROPIC_API_KEY", "").strip())
-
-    sidebar_key_input = st.text_input(
-        "Anthropic API Key",
-        type="password",
-        placeholder="Loaded from environment ✓" if _has_env_key else "sk-ant-...",
     st.markdown("---")
     st.markdown("#### 📋 Frameworks")
     st.markdown("""

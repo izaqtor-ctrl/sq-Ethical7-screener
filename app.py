@@ -358,6 +358,18 @@ with st.sidebar:
     Always consult a qualified Islamic finance scholar before making investment decisions.
     Financial data from Yahoo Finance may be delayed or incomplete.
     </small>
+    <br><br>
+    <small style="color:#4a6a4a; line-height:1.6; font-style:italic;">
+    <strong style="color:#5a7a5a;">Educational Use Only.</strong>
+    The information provided by this application is for general informational and educational purposes only.
+    It is not intended to be, and does not constitute, financial advice, investment advice, trading advice,
+    or any other type of advice. Nothing on this application should be construed as a solicitation,
+    recommendation, or offer to buy or sell any security or financial instrument.
+    <br><br>
+    Past screening results do not guarantee future compliance status. Always conduct your own due diligence
+    and consult with a qualified financial advisor and/or Islamic finance scholar before making any investment decision.
+    You are solely responsible for your own investment decisions.
+    </small>
     """, unsafe_allow_html=True)
 
 

@@ -40,7 +40,7 @@ PROHIBITED_RULES = [
         "activity": "Conventional Insurance",
         "keywords": ["life insurance", "property insurance", "casualty insurance", "reinsurance company"],
         "industry_match": ["Insurance—Life", "Insurance—Property & Casualty", "Insurance—Diversified", "Insurance—Specialty", "Reinsurance"],
-        "standards": ["Islamicly", "Wahed / FTSE Yasaar", "SP Funds / S&P Shariah"],
+        "standards": ["S&P Shariah (Market-Cap Variant)", "FTSE Yasaar", "S&P Shariah"],
         "note": "Takaful (Islamic insurance) is exempt.",
     },
     {
@@ -58,14 +58,14 @@ PROHIBITED_RULES = [
         "activity": "Weapons / Defense Manufacturing",
         "keywords": ["weapons manufacturer", "arms manufacturer", "defense contractor", "ammunition manufacturer", "firearms manufacturer"],
         "industry_match": ["Aerospace & Defense"],
-        "standards": ["AAOIFI", "Zoya", "Musaffa", "Wahed / FTSE Yasaar", "SP Funds / S&P Shariah"],
-        "note": "Islamicly does not explicitly list weapons/defense in its public rulebook.",
+        "standards": ["AAOIFI", "AAOIFI Standard", "AAOIFI Standard", "FTSE Yasaar", "S&P Shariah"],
+        "note": "The FTSE Yasaar standard does not explicitly include weapons in all public rule documents; verify independently.",
     },
     {
         "activity": "Hotels / Entertainment (select standards)",
         "keywords": ["hotel chain", "casino resort", "nightclub"],
         "industry_match": ["Hotels & Motels", "Resorts & Casinos"],
-        "standards": ["Islamicly", "Wahed / FTSE Yasaar", "SP Funds / S&P Shariah", "Musaffa"],
+        "standards": ["S&P Shariah (Market-Cap Variant)", "FTSE Yasaar", "S&P Shariah", "AAOIFI Standard"],
     },
 ]
 
@@ -87,7 +87,7 @@ STANDARDS_CONFIG = {
         "impure_revenue_threshold": 0.05,
         "description": "30% debt / market cap · 30% cash / market cap · 5% impure revenue",
     },
-    "Zoya": {
+    "AAOIFI Standard": {
         "debt_denominator": "market_cap",
         "debt_threshold": 0.30,
         "cash_denominator": "market_cap",
@@ -96,7 +96,7 @@ STANDARDS_CONFIG = {
         "impure_revenue_threshold": 0.05,
         "description": "AAOIFI-based default · 30/30/5 · methodology switching available in Pro",
     },
-    "Musaffa": {
+    "AAOIFI Standard": {
         "debt_denominator": "market_cap",
         "debt_threshold": 0.30,
         "cash_denominator": "market_cap",
@@ -105,7 +105,7 @@ STANDARDS_CONFIG = {
         "impure_revenue_threshold": 0.05,
         "description": "AAOIFI-based · 30/30/5 · older AAOIFI liquidity filter considered removed",
     },
-    "Islamicly": {
+    "S&P Shariah (Market-Cap Variant)": {
         "debt_denominator": "market_cap",
         "debt_threshold": 0.33,
         "cash_denominator": "market_cap",
@@ -117,7 +117,7 @@ STANDARDS_CONFIG = {
         "impure_revenue_threshold": 0.05,
         "description": "33% debt · 33% cash · 49% receivables (vs market cap, 36-mo avg approx.) · 5% impure revenue",
     },
-    "Wahed / FTSE Yasaar": {
+    "FTSE Yasaar": {
         "debt_denominator": "total_assets",
         "debt_threshold": 0.33333,
         "cash_denominator": "total_assets",
@@ -129,7 +129,7 @@ STANDARDS_CONFIG = {
         "impure_revenue_threshold": 0.05,
         "description": "33.3% debt / assets · 33.3% cash / assets · rec+cash < 50% assets · quarterly review",
     },
-    "SP Funds / S&P Shariah": {
+    "S&P Shariah": {
         "debt_denominator": "total_assets",
         "debt_threshold": 0.33333,
         "cash_denominator": "total_assets",

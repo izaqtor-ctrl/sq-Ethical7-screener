@@ -29,7 +29,7 @@ The App is not operated by a registered investment advisor, broker-dealer, finan
 
 ## 3. Not a Religious or Scholarly Authority
 
-The App is not affiliated with, endorsed by, or operated under the supervision of AAOIFI, the Dow Jones Islamic Market Index, S&P Global, FTSE Russell, Zoya, Musaffa, Islamicly, Wahed Invest, SP Funds, or any Islamic scholarly body, Shariah supervisory board, or religious authority. Screening results reflect a rules-based algorithmic interpretation of publicly available methodology documents only.
+The App is not affiliated with, endorsed by, or operated under the supervision of AAOIFI, S&P Global, FTSE Russell, or any Islamic scholarly body, Shariah supervisory board, or religious authority. Screening criteria are derived solely from publicly available AAOIFI, FTSE Yasaar, and S&P Shariah methodology documents. Screening results reflect a rules-based algorithmic interpretation of those documents only.
 
 The question of whether a particular investment is permissible (halal) or impermissible (haram) under Islamic law is a personal matter that requires consultation with a qualified Islamic finance scholar. **Always seek a qualified scholar's guidance before acting on any screening result.**
 
@@ -87,7 +87,7 @@ The App's code, design, and original content are the property of their respectiv
 
 ## 9. Third-Party Data and Links
 
-The App relies on third-party data providers (including Yahoo Finance). We are not responsible for the content, accuracy, or availability of third-party services. References to third-party screening platforms (Zoya, Musaffa, Islamicly, Wahed, SP Funds) are for informational context only and do not imply affiliation or endorsement.
+The App relies on third-party data providers (including Yahoo Finance). We are not responsible for the content, accuracy, or availability of third-party services. References to AAOIFI, FTSE Yasaar, and S&P Shariah are for methodology attribution only and do not imply affiliation with or endorsement by those organizations.
 
 ---
 

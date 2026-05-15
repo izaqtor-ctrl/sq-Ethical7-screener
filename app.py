@@ -4,7 +4,7 @@ Screens individual stocks or a list of tickers against 6 major Islamic finance f
 """
 
 import streamlit as st
-from halal_screener import screen_ticker, screen_multiple_tickers
+from halal_screener import screen_ticker
 import os
 
 # ─── Page Config ───────────────────────────────────────────────────────────────
@@ -335,15 +335,13 @@ with st.sidebar:
     st.markdown("## 🌙 Halal Screener")
     st.markdown("---")
 
-    # API Key input
-    api_key = st.text_input(
+    # Check if a key is already available before asking user to type
+    _has_env_key = bool(os.environ.get("ANTHROPIC_API_KEY", "").strip())
+
+    sidebar_key_input = st.text_input(
         "Anthropic API Key",
         type="password",
-        placeholder="sk-ant-...",
-        help="Required for business activity screening. Get yours at console.anthropic.com",
-        value=os.environ.get("ANTHROPIC_API_KEY", ""),
-    )
-
+        placeholder="Loaded from environment ✓" if _has_env_key else "sk-ant-...",
     st.markdown("---")
     st.markdown("#### 📋 Frameworks")
     st.markdown("""
@@ -409,9 +407,7 @@ st.markdown("""
 # ─── Screening Logic ───────────────────────────────────────────────────────────
 
 if screen_btn:
-    if not api_key:
-        st.error("⚠️ Please enter your Anthropic API key in the sidebar to enable business activity screening.")
-    elif not ticker_input.strip():
+    if not ticker_input.strip():
         st.warning("Please enter at least one ticker symbol.")
     else:
         tickers = [t.strip().upper() for t in ticker_input.replace(" ", ",").split(",") if t.strip()]
@@ -430,7 +426,7 @@ if screen_btn:
         results = []
         for i, ticker in enumerate(tickers):
             status.markdown(f"*⏳ Screening {ticker}... ({i+1}/{len(tickers)})*")
-            result = screen_ticker(ticker, api_key)
+            result = screen_ticker(ticker)
             results.append(result)
             progress.progress((i + 1) / len(tickers))
 
